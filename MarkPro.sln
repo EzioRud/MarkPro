@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkPro", "MarkPro\MarkPro.csproj", "{0F16844E-1EF4-4E45-9E18-66D1530F3417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkProTests", "MarkProTests\MarkProTests.csproj", "{88876341-DA7E-47A0-AEBB-B033E938499F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F16844E-1EF4-4E45-9E18-66D1530F3417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F16844E-1EF4-4E45-9E18-66D1530F3417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F16844E-1EF4-4E45-9E18-66D1530F3417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F16844E-1EF4-4E45-9E18-66D1530F3417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88876341-DA7E-47A0-AEBB-B033E938499F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88876341-DA7E-47A0-AEBB-B033E938499F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88876341-DA7E-47A0-AEBB-B033E938499F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88876341-DA7E-47A0-AEBB-B033E938499F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AE978B8-1B6A-4BC9-966B-83F8A7F8961D}
+	EndGlobalSection
+EndGlobal
