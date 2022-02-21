@@ -11,6 +11,13 @@ builder.Services.AddHttpClient<IGetUserService, GetUserService>(c =>
     c.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+builder.Services.AddHttpClient<IRequestService, RequestService>(i =>
+{
+    i.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:5055/api/v1/request/");
+    i.DefaultRequestHeaders.Add("Accept", "application/json");
+    i.DefaultRequestHeaders.Add("x-api-key", "MTY0MzA5MjU5Njk1NzIxYmRjZWZiLWIxYWMtNGI1NC1hYzAxLWFhYWJhZjZjOTE1MSk=");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

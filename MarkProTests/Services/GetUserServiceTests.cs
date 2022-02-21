@@ -18,7 +18,7 @@ namespace MarkPro.Services.Tests
         public void GetUsersListTest()
         {
             //Arrange
-           
+            
             User ExpectedUsers = new User();
             
             //Act
@@ -43,8 +43,7 @@ namespace MarkPro.Services.Tests
 
             //Assert
             Assert.AreEqual(usersList.GetUsersList(), ExpectedUsers);
-            Assert.AreNotEqual(ActualUsers, ExpectedUsers);
-            
+
         }
     }
 }

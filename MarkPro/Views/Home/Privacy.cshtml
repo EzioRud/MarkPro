@@ -1,6 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@model IEnumerable<MarkPro.Models.Request>
+@{
+    ViewData["Title"] = "Requests";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="row">
+   @foreach (var item in Model)
+    {     
+        <div class="card m-1" style="width:350px;">
+            <div class="card-body">
+                <img src="@Html.DisplayFor(modelItem => item.Avatar) alt="avatar">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.MediaName)</h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.RequestedBy)</h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.MediaType)</h5>
+                
+             </div>
+        </div>
+    }
+</div>

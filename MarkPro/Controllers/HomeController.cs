@@ -9,11 +9,13 @@ namespace MarkPro.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IGetUserService _getUserService;
+        private readonly IRequestService _requestService;
 
-        public HomeController(ILogger<HomeController> logger, IGetUserService getUserService)
+        public HomeController(ILogger<HomeController> logger, IGetUserService getUserService, IRequestService requestService)
         {
             _logger = logger;
             _getUserService = getUserService;   
+            _requestService = requestService;
         }
 
         public async Task<IActionResult> Index()
@@ -37,9 +39,24 @@ namespace MarkPro.Controllers
             }
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var Requests = await RequestsResults();
+            return View(Requests);
+        }
+
+        private async Task<IEnumerable<Request>> RequestsResults()
+        {
+            try
+            {
+                var RequestList = await _requestService.GetRequests();
+                return RequestList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<Request>();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
