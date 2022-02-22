@@ -23,9 +23,12 @@ namespace MarkPro.Services
             return responseObject?.results.Select(request => new Request
             {
                 Avatar = request.requestedBy.avatar,
-                MediaName = "Media name: " + request.media.externalServiceSlug,
-                RequestedBy = "Requested By: " + request.requestedBy.plexUsername,
-                MediaType = "Media Type: " + request.media.mediaType
+                MediaName = request.media.externalServiceSlug,
+                RequestedBy = request.requestedBy.plexUsername,
+                MediaType = request.media.mediaType,
+                DateRequested = request.media.createdAt.ToString(),
+                Status = request.media.status
+                
             }) ;
         }
     }

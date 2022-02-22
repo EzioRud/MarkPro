@@ -19,6 +19,9 @@ namespace MarkPro.Services
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var responseObject = await JsonSerializer.DeserializeAsync<GetUsersList>(responseStream);
 
+            var UserRequests = new ListRequests();
+            var Users = new User();
+
             return responseObject?.response?.data.Select(i => new User
             {
                 Name = i.friendly_name,

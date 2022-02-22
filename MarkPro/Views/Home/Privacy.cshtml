@@ -7,13 +7,15 @@
 <div class="row">
    @foreach (var item in Model)
     {     
-        <div class="card m-1" style="width:350px;">
+        <div class="card m-1" style="width:350px style="background-color:royalblue;">
             <div class="card-body">
                 <img src="@Html.DisplayFor(modelItem => item.Avatar) alt="avatar">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.MediaName)</h5>
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.RequestedBy)</h5>
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.MediaType)</h5>
-                
+                <h5 class="card-title"><b>Media Name/ID: </b>@Html.DisplayFor(modelItem => item.MediaName)</h5>
+                <p></p>
+                <h5 class="card-title"><b>Requested By: </b>@Html.DisplayFor(modelItem => item.RequestedBy)</h5>
+                <h5 class="card-title"><b>Media Type: </b>@Html.DisplayFor(modelItem => item.MediaType)</h5>
+                <h5 class="card-title"><b>Date Requested: </b>@Html.DisplayFor(modelItem => item.DateRequested)</h5>
+                <h5 class="card-title"><b>Status: </b>@Html.DisplayFor(modelItem => item.Status)</h5>
              </div>
         </div>
     }
