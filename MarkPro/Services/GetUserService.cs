@@ -36,7 +36,9 @@ namespace MarkPro.Services
             return responseObject?.results?.Select(i => new User
             {             
                 Id = i.id,
-                Name = i.plexUsername
+                Name = i.plexUsername,
+                RequestCount = i.requestCount,
+                DisplayImage = i.avatar
             }); 
         }
     }
