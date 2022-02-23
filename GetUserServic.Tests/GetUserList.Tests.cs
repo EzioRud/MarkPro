@@ -1,28 +1,33 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using System.Net.Http;
-using Moq;
-using Moq.Protected;
 using System.Threading;
 using System.Net;
+using Moq;
+using Moq.Protected;
 
-namespace MarkPro.Services.Tests
+namespace GetUserServic.Tests
 {
-    [TestClass()]
-    public class GetUserServiceTests
+    public class Tests
     {
-        public HttpClient httpClient { get; set; }
-        [TestMethod()]
-        public void GetUsersListTest()
+        [SetUp]
+        public void Setup()
         {
+        }
+
+        [Test]
+        public async Task GetUsersListTest()
+        {
+            var httRequest = new HttpRequestMessage();
+            var cancellationToken = CancellationToken.None;
             //Arrange
-            var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            var handlerMock = new Mock<HttpMessageHandler>();
             handlerMock.Protected() //Setup The Protected Method to mock
                 .Setup<Task<HttpResponseMessage>>(
                  "SendAsync",
-                 ItExpr.IsAny<HttpRequestMessage>(),
-                 ItExpr.IsAny<CancellationToken>()
+                 httRequest,
+                 cancellationToken
                 )
             //Prepare the expected response of the mocked http call
             .ReturnsAsync(new HttpResponseMessage()
@@ -37,8 +42,10 @@ namespace MarkPro.Services.Tests
                 BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2?apikey=332585e9a336416fba06c72da3a3cb7d&cmd=get_user_names")
             };
             //Act
+            var result = await httpClient.SendAsync(httRequest, cancellationToken);
             //Assert
-            Assert.IsNotNull(httpClient);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.StatusCode, HttpStatusCode.OK);
         }
     }
 }

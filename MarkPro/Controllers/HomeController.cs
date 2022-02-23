@@ -11,15 +11,17 @@ namespace MarkPro.Controllers
         private readonly IGetUserService _getUserService;
         private readonly IRequestService _requestService;
         private readonly ITotalRequestService _totalRequestService;
+        private readonly IAllUserRequestsService _allUserRequestsService;
 
-        public HomeController(ILogger<HomeController> logger, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService)
+        public HomeController(ILogger<HomeController> logger, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService, IAllUserRequestsService allUserRequestsService)
         {
             _logger = logger;
             _getUserService = getUserService;   
             _requestService = requestService;
             _totalRequestService = totalRequestService;
+            _allUserRequestsService = allUserRequestsService;
         }
-
+        //All users view
         public async Task<IActionResult> Index()
         {
             var Users = await UsersResults();
@@ -40,6 +42,30 @@ namespace MarkPro.Controllers
                 return Enumerable.Empty<User>();
             }
         }
+        //End
+
+        //All User Requests View
+        public async Task<IActionResult> AllUserRequestsView()
+        {
+            var requests = await AllRequests();
+
+            return View(requests);
+        }
+
+        private async Task<IEnumerable<AllUserRequests>> AllRequests()
+        {
+            try
+            {
+                var UsersList = await _allUserRequestsService.GetAllUserRequests(1);
+                return UsersList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<AllUserRequests>();
+            }
+        }
+        //End
 
         public async Task<IActionResult> Privacy()
         {
