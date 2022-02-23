@@ -29,7 +29,7 @@ namespace MarkPro.Controllers
             return View(Users);
         }
 
-        private async Task<IEnumerable<User>> UsersResults()
+        private async Task<IEnumerable<User?>> UsersResults()
         {
             try
             {
@@ -45,18 +45,18 @@ namespace MarkPro.Controllers
         //End
 
         //All User Requests View
-        public async Task<IActionResult> AllUserRequestsView()
+        public async Task<IActionResult> AllUserRequestsView(int UserId)
         {
-            var requests = await AllRequests();
+            var requests = await AllRequests(UserId);
 
             return View(requests);
         }
 
-        private async Task<IEnumerable<AllUserRequests>> AllRequests()
+        private async Task<IEnumerable<AllUserRequests>?> AllRequests(int UserId)
         {
             try
             {
-                var UsersList = await _allUserRequestsService.GetAllUserRequests(1);
+                var UsersList = await _allUserRequestsService.GetAllUserRequests(UserId);
                 return UsersList;
             }
             catch (Exception ex)

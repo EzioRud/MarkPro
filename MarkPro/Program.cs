@@ -5,10 +5,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient<IGetUserService, GetUserService>(c =>
+/*builder.Services.AddHttpClient<IGetUserService, GetUserService>(c =>
 {
     c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");
     c.DefaultRequestHeaders.Add("Accept", "application/json");
+});*/
+
+builder.Services.AddHttpClient<IGetUserService, GetUserService>(i =>
+{
+    i.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:5055/api/v1/user/");
+    i.DefaultRequestHeaders.Add("Accept", "application/json");
+    i.DefaultRequestHeaders.Add("x-api-key", "MTY0MzA5MjU5Njk1NzIxYmRjZWZiLWIxYWMtNGI1NC1hYzAxLWFhYWJhZjZjOTE1MSk=");
 });
 
 builder.Services.AddHttpClient<IRequestService, RequestService>(i =>

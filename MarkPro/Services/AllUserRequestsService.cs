@@ -15,7 +15,7 @@ namespace MarkPro.Services
 
         public async Task<IEnumerable<AllUserRequests>?> GetAllUserRequests(int UserID)
         {
-            var response = await _httpClient.GetAsync($"http://8fde09ad22a2.sn.mynetname.net:5055/api/v1/user/{UserID}/requests");
+            var response = await _httpClient.GetAsync($"http://8fde09ad22a2.sn.mynetname.net:5055/api/v1/user/{UserID}/requests?take=100&skip=0");
             response.EnsureSuccessStatusCode();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();

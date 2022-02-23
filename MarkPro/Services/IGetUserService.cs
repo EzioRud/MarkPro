@@ -4,6 +4,6 @@ namespace MarkPro.Services
 {
     public interface IGetUserService
     {
-        Task<IEnumerable<User>> GetUsersList();
+        Task<IEnumerable<User?>> GetUsersList();
     }
 }
