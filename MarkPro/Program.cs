@@ -5,11 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-/*builder.Services.AddHttpClient<IGetUserService, GetUserService>(c =>
+builder.Services.AddHttpClient<IHistoryService, HistoryService>(c =>
 {
     c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");
     c.DefaultRequestHeaders.Add("Accept", "application/json");
-});*/
+});
 
 builder.Services.AddHttpClient<IGetUserService, GetUserService>(i =>
 {

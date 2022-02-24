@@ -23,9 +23,7 @@ namespace GetUserServic.Tests
             var cancellationToken = CancellationToken.None;
             //Arrange
             var handlerMock = new Mock<HttpMessageHandler>();
-            handlerMock.Protected() //Setup The Protected Method to mock
-                .Setup<Task<HttpResponseMessage>>(
-                 "SendAsync",
+            handlerMock(mbox => mbox)
                  httRequest,
                  cancellationToken
                 )

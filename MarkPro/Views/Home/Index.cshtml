@@ -2,14 +2,25 @@
 
 @{
     ViewData["Title"] = "Users";
+    <div style="background-color: black;"></div>
 }
 
-<div class="row">
+@foreach (var item in Model)
+{
+    var i = 0;
+    if(i < 1)
+    {
+        <h1 class="card-title"><b>List of users:</b></h1><br>
+        break;
+    }
+}
+
+<div class="row" >
    @foreach (var item in Model)
     {     
-        <div class="card m-1" style="width:350px ">
-            <div class="card-body" >
-                <img src="@Html.DisplayFor(modelItem => item.DisplayImage) alt="avatar">
+        <div class="card m-1" style="width:350px; box-shadow: 10px 10px 10px 10px; background-color: #A8CCD7 ; backdrop-filter: blur(50px);">
+            <div class="card-body" style="box-shadow: 0 0 5px 0; background-color: #d6e2e2 ; backdrop-filter: blur(10px);" >
+                <img src="@Html.DisplayFor(modelItem => item.DisplayImage) alt="avatar" style="border-radius: 50%;">
                 <h5 class="card-title"><b>Username: </b>@Html.DisplayFor(modelItem => item.Name)</h5>
                 <h5 class="card-title"><b>User ID: </b>@Html.DisplayFor(modelItem => item.Id)</h5>
                 <h5 class="card-title"><b>Number of Requests: </b>@Html.DisplayFor(modelItem => item.RequestCount)</h5>

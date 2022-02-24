@@ -12,15 +12,40 @@ namespace MarkPro.Controllers
         private readonly IRequestService _requestService;
         private readonly ITotalRequestService _totalRequestService;
         private readonly IAllUserRequestsService _allUserRequestsService;
+        private readonly IHistoryService _historyService;
 
-        public HomeController(ILogger<HomeController> logger, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService, IAllUserRequestsService allUserRequestsService)
+        public HomeController(ILogger<HomeController> logger, IHistoryService historyService, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService, IAllUserRequestsService allUserRequestsService)
         {
             _logger = logger;
             _getUserService = getUserService;   
             _requestService = requestService;
             _totalRequestService = totalRequestService;
             _allUserRequestsService = allUserRequestsService;
+            _historyService = historyService;
         }
+        //History view
+        public async Task<IActionResult> History()
+        {
+            var Users = await GetUserHistory();
+
+            return View(Users);
+        }
+
+        private async Task<IEnumerable<MediaHistory>?> GetUserHistory()
+        {
+            try
+            {
+                var HistoryList = await _historyService.GetHistory();
+                return HistoryList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<MediaHistory>();
+            }
+        }
+        //End
+
         //All users view
         public async Task<IActionResult> Index()
         {
@@ -94,7 +119,7 @@ namespace MarkPro.Controllers
 
         }
 
-        private async Task<IEnumerable<TotalRequestCount>> TotalRequets()
+        private async Task<IEnumerable<TotalRequestCount>?> TotalRequets()
         {
             try
             {
