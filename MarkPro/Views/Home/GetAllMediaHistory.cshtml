@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MarkPro.Models.MediaWatchedHistory>
+
+
+@{
+    ViewData["Title"] = "All User Requests";
+}
+
+
+
+<div class="row">
+   @foreach (var item in Model)
+    {     
+        <div class="card m-1" style="width:350px; box-shadow: 0 0 5px 0; background-color: lightblue; backdrop-filter: blur(10px);">
+            <div class="card-body" >
+                <h5 class="card-title"><b>Media Name/ID: </b>@Html.DisplayFor(modelItem => item.CompletionStatus)</h5>
+                <h5 class="card-title"><b>Media Type: </b>@Html.DisplayFor(modelItem => item.FriendlyName)</h5>
+                
+             </div>
+             <br>
+        </div>
+    }
+</div>

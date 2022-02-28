@@ -8,5 +8,7 @@
         public string RequestCount { get; set; }
         public string MediaType { get; set; }
         public string MediaStatus { get; set; }
+
+        public string MediaKey { get; set; }
     }
 }

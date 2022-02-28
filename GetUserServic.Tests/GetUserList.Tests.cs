@@ -16,7 +16,7 @@ namespace GetUserServic.Tests
         {
         }
 
-        [Test]
+       /*[Test]
         public async Task GetUsersListTest()
         {
             var httRequest = new HttpRequestMessage();
@@ -44,6 +44,6 @@ namespace GetUserServic.Tests
             //Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(result.StatusCode, HttpStatusCode.OK);
-        }
+        }*/
     }
 }

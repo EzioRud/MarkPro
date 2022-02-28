@@ -13,8 +13,11 @@ namespace MarkPro.Controllers
         private readonly ITotalRequestService _totalRequestService;
         private readonly IAllUserRequestsService _allUserRequestsService;
         private readonly IHistoryService _historyService;
+        private readonly IWatchedHistoryService _watchedHistoryService;
+        private readonly ITestService _testService;
+        private readonly IWhoWatchedService _whoWatchedService;
 
-        public HomeController(ILogger<HomeController> logger, IHistoryService historyService, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService, IAllUserRequestsService allUserRequestsService)
+        public HomeController(ILogger<HomeController> logger, IWhoWatchedService whoWatchedService ,ITestService testService, IWatchedHistoryService watchedHistoryService ,IHistoryService historyService, IGetUserService getUserService, IRequestService requestService, ITotalRequestService totalRequestService, IAllUserRequestsService allUserRequestsService)
         {
             _logger = logger;
             _getUserService = getUserService;   
@@ -22,7 +25,80 @@ namespace MarkPro.Controllers
             _totalRequestService = totalRequestService;
             _allUserRequestsService = allUserRequestsService;
             _historyService = historyService;
+            _watchedHistoryService = watchedHistoryService;
+            _testService = testService;
+            _whoWatchedService = whoWatchedService;
         }
+        //Who watched
+        public async Task<IActionResult> WhoWatchedMedia(string RatingKey)
+        {
+            var Users = await WhoWatched(RatingKey);
+
+            return View(Users);
+        }
+
+        private async Task<IEnumerable<User>?> WhoWatched(string RatingKey)
+        {
+            try
+            {
+                var HistoryList = await _whoWatchedService.GetAllWhoWatched(RatingKey);
+                return HistoryList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<User>();
+            }
+        }
+        //end
+
+        //test begins
+        public async Task<IActionResult> MediaTest(string RatingKey)
+        {
+            var Users = await TestMedia(RatingKey);
+
+            return View(Users);
+        }
+
+        private async Task<IEnumerable<TestModel>?> TestMedia(string RatingKey)
+        {
+            try
+            {
+                var HistoryList = await _testService.TestHistory(RatingKey);
+                return HistoryList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<TestModel>();
+            }
+        }
+        //end
+
+
+        //Media History view
+        public async Task<IActionResult> GetAllMediaHistory(string RatingKey)
+        {
+            var Users = await GetAllMedia(RatingKey);
+
+            return View(Users);
+        }
+
+        private async Task<IEnumerable<MediaWatchedHistory>?> GetAllMedia(string RatingKey)
+        {
+            try
+            {
+                var HistoryList = await _watchedHistoryService.GetMediaHistory(RatingKey);
+                return HistoryList;
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                return Enumerable.Empty<MediaWatchedHistory>();
+            }
+        }
+        //End
+
         //History view
         public async Task<IActionResult> History()
         {
@@ -119,6 +195,12 @@ namespace MarkPro.Controllers
 
         }
 
+        public async Task<IActionResult> TotalRequests() //total requests
+        {
+            var Requests = await TotalRequets();
+            return View(Requests);
+        }
+
         private async Task<IEnumerable<TotalRequestCount>?> TotalRequets()
         {
             try
@@ -133,11 +215,7 @@ namespace MarkPro.Controllers
             }
         }
 
-        public async Task<IActionResult> TotalRequests() //total requests
-        {
-            var Requests = await TotalRequets();
-            return View(Requests);
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

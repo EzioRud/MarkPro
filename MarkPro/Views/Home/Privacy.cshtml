@@ -4,7 +4,9 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
+@if(Model.Count() > 0)
+{
+    <div class="row">
    @foreach (var item in Model)
     {     
         <div class="card m-1" style="width:350px; box-shadow: 0 0 5px 0; background-color: lightblue; backdrop-filter: blur(10px);">
@@ -20,3 +22,10 @@
         </div>
     }
 </div>
+}
+@if(Model.Count().Equals(0))
+{
+    <h1>User has no requests</h1>
+}
+
+

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MarkPro.Models.User>
+
+
+@{
+    ViewData["Title"] = "watched history";
+}
+
+
+
+@if(Model.Count() > 0)
+{
+    <div class="row">
+   @foreach (var item in Model)
+    {     
+        <div class="card m-1" style="width:350px; box-shadow: 0 0 5px 0; background-color: lightblue; backdrop-filter: blur(10px);">
+            <div class="card-body" >
+                 <h5 class="card-title"><b>Watched by: </b>@Html.DisplayFor(modelItem => item.Name)</h5>
+                <h5 class="card-title"><b>Total Plays: </b>@Html.DisplayFor(modelItem => item.TotalPlays)</h5>
+                <h5 class="card-title"><b>Play Time: </b>@Html.DisplayFor(modelItem => item.TotalTime) minutes</h5>
+             </div>
+             <br>
+        </div>
+    }
+</div>
+}
+@if(Model.Count().Equals(0))
+{
+    <h1>Not watched by anyone</h1>
+}
+

@@ -10,7 +10,7 @@
     var i = 0;
     if(i < 1)
     {
-        <h2 class="card-title"><b>Media History: </b></h2>
+        <h2 class="card-title"><b>Recent Playing: </b></h2>
         break;
     }
     
@@ -19,13 +19,14 @@
 <div class="row">
    @foreach (var item in Model)
     {
-        <div class="card m-1" style="width:350px; box-shadow: 0 0 5px 0; background-color: lightblue; backdrop-filter: blur(10px); ">
+        <div class="card m-1" style="width:350px; box-shadow: 5px 0 5px 0; background-color: #d6e2e2; backdrop-filter: blur(100px); ">
             <div class="card-body" >
                 <h5 class="card-title"><b>Media Name/ID: </b>@Html.DisplayFor(modelItem => item.MediaTitle)</h5>
-                <h5 class="card-title"><b>User: </b>@Html.DisplayFor(modelItem => item.UserWatching)</h5>
-                <h5 class="card-title"><b>Completion Status </b>@Html.DisplayFor(modelItem => item.CompletionStatus)</h5>
-                <h5 class="card-title"><b>Watched Status: </b>@Html.DisplayFor(modelItem => item.WatchedStatus)</h5>
+                <h5 class="card-title"><b>Completion Status: </b>@Html.DisplayFor(modelItem => item.CompletionStatus) %</h5>
+                
+                <a asp-controller="Home" asp-action="WhoWatchedMedia" asp-route-RatingKey="@item.MediaRatingKey" class="btn btn-primary">See Media Status</a>
              </div>
         </div>
+        
     }
 </div>

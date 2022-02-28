@@ -5,6 +5,28 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//testmodel
+builder.Services.AddHttpClient<ITestService, TestService>(c =>
+{
+    c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+//end
+
+
+builder.Services.AddHttpClient<IWhoWatchedService, WhoWatchedService>(c =>
+{
+    c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+//end
+
+builder.Services.AddHttpClient<IWatchedHistoryService, WatchedHistoryService>(c =>
+{
+    c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
 builder.Services.AddHttpClient<IHistoryService, HistoryService>(c =>
 {
     c.BaseAddress = new Uri("http://8fde09ad22a2.sn.mynetname.net:8181/api/v2");

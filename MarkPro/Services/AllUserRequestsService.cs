@@ -26,8 +26,9 @@ namespace MarkPro.Services
                 UserName = i.requestedBy.plexUsername,
                 MediaName = i.media.externalServiceSlug,
                 MediaStatus = i.media.status.ToString(),
-                MediaType = i.media.mediaType
-                
+                MediaType = i.media.mediaType,
+                MediaKey = i.media.ratingKey
+
             });
 
         }

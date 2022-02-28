@@ -21,12 +21,10 @@ namespace MarkPro.Services
             var responseObject = await JsonSerializer.DeserializeAsync<HistoryRoot>(responseStream);
 
             return responseObject?.response?.data.data.Select(i => new MediaHistory
-            {
+            {               
                 MediaTitle = i.full_title,
-                UserWatching = i.friendly_name,
-                CompletionStatus = i.percent_complete + "%",
-                WatchedStatus = i.watched_status,
-                State = i.state
+                MediaRatingKey = i.rating_key.ToString(),
+                CompletionStatus = i.percent_complete,
             });
         }
     }
